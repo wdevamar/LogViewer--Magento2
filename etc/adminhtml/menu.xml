@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="WdevAmar_LogViewer::logviewer_menu"
+             title="Log Viewer"
+             module="WdevAmar_LogViewer"
+             sortOrder="100"
+             parent="Magento_Backend::system_tools"
+             action="logviewer/index/index"
+             resource="WdevAmar_LogViewer::logviewer"/>
+    </menu>
+</config>

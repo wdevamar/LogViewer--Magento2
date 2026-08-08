@@ -1,0 +1,54 @@
+<div class="admin__data-grid-wrap">
+    <div class="admin__data-grid-content">
+	<div class="admin__field-inputform">
+        	<div class="admin__field-control-amp">
+	            <label class="admin__field-label" for="log_file_select"><span>Select Log File</span></label>
+        	    <div class="admin__field-control-wrap">
+	                <select id="log_file_select" class="admin__control-select">
+	                    <?php foreach ($block->getLogFiles() as $file): ?>
+	                        <option value="<?php echo $block->escapeHtml($file['name']); ?>">
+	                            <?php echo $block->escapeHtml($file['name']); ?> (<?php echo $block->escapeHtml($block->formatSize($file['size'])); ?>)
+	                        </option>
+	                    <?php endforeach; ?>
+	                </select>
+	            </div>
+	        </div>
+
+	        <div class="admin__field-control-amp">
+	            <label class="admin__field-label" for="lines_to_display"><span>Lines to Display</span></label>
+	            <div class="admin__field-control-wrap">
+	                <input type="number" id="lines_to_display" class="admin__control-text" value="100" min="1"/>
+	            </div>
+	        </div>
+	</div>
+        <div class="admin__field-control">
+            <button class="action-primary" id="view_log_button"><span>View Log / Refresh</span></button>
+            <button class="action-secondary" id="download_log_button"><span>Download Full File</span></button>
+            <button class="action-delete" id="delete_log_button"><span>Erase Log File</span></button>
+        </div>
+
+        <div class="admin__field-control">
+            <div class="log-info">
+                <p>File Size: <span id="file_size">N/A</span></p>
+                <p>Last Modified: <span id="last_modified">N/A</span></p>
+            </div>
+        </div>
+
+        <div class="admin__field-control">
+            <pre id="log_content" class="log-viewer-content"></pre>
+        </div>
+    </div>
+</div>
+
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "WdevAmar_LogViewer/js/logviewer": {
+                "viewUrl": "<?php echo $block->escapeUrl($block->getViewUrl()); ?>",
+                "downloadUrl": "<?php echo $block->escapeUrl($block->getDownloadUrl()); ?>",
+                "deleteUrl": "<?php echo $block->escapeUrl($block->getDeleteUrl()); ?>",
+                "logFiles": <?php echo $block->getLogFilesJson(); ?>
+            }
+        }
+    }
+</script>
